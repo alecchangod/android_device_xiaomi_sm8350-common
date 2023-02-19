@@ -51,6 +51,10 @@ on init
     chown system system /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
     chmod 0660 /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
 
+    # report max frequency to unity tasks.
+    write /proc/sys/kernel/sched_lib_name "UnityMain,libunity.so,com.miHoYo.,libunity.so,libfb.so,liblogic.so,libssgamesdkcronet.so,libil2cpp.so,com.activision."
+    write /proc/sys/kernel/sched_lib_mask_force 255
+
 on early-fs
     start vold
     exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ cnss2
